@@ -1,5 +1,7 @@
 # CNVseq
-A tool for detecting CNVs in CNV-seq data. By default, it identifies DUP and DEL larger than 100 kb with a mosaicism level above 0.5, and CNVs larger than 5 Mb with a mosaicism level above 0.1. Special optimization is applied for detecting big CNVs and chromosomal abnormalities, ensuring improved detection performance (recommended value: 0.3, which can reduce detection caused by some data fluctuations). The mosaicism level is adjustable.
+A tool for detecting CNVs in CNV-seq data. 
+
+By default, it identifies DUP and DEL larger than 100 kb with a mosaicism level above 0.5, and CNVs larger than 5 Mb with a mosaicism level above 0.1. Special optimization is applied for detecting big CNVs and chromosomal abnormalities, ensuring improved detection performance (recommended value: 0.3, which can reduce detection caused by some data fluctuations). The mosaicism level is adjustable.
 
 ## Install
 It can be installed from github:
