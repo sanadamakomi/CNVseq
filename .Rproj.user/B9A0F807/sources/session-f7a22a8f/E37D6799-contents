@@ -1,0 +1,22 @@
+#' @title Filter CNV annotation result
+#' @description Remove CNVs in centromere, telomere and population-genetic
+#'   region without ClinGen dose effect gene.
+#' @param in_path Path of CNV annotation result.
+#' @param out_path Path of output file. File encoding is GBK.
+#' @export
+filter_result <- function(in_path, out_path) {
+    if (is.null(in_path)) stop("Input --inPath")
+    if (!file.exists(in_path)) stop(paste0("Error: File no exist:\n", in_path))
+    if (is.null(out_path)) out_path <- gsub(".txt$", ".filter.txt", in_path)
+    df <- read.table(in_path, header = TRUE, sep = "\t", quote = "",
+                     comment.char = "#", na.strings = "NA",
+                     fill = TRUE, stringsAsFactors = FALSE, fileEncoding='gbk')
+    idx <- which(df[,"Flag"] == "." & (df[,"CodingGene"] != "." | df[,"ClinCNV"] != "."))
+    if (length(idx) > 0) {
+        out_df <- df[idx, , drop=FALSE]
+    } else {
+        out_df <- data.frame(matrix(data=rep("NA", nrow(df)), nrow=1))
+        colnames(out_df) <- colnames(df)
+    }
+    write.table(out_df, file = out_path, row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t", fileEncoding="gbk")
+}
