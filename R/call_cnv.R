@@ -73,7 +73,7 @@ call_cnv <- function(data, s_id, is_male=TRUE, fraction=c(0.5, 0.5)) {
             Rle(as.character(as.vector(cnv_5m[,"chrom"]))),
             IRanges(start=as.numeric(as.vector(cnv_5m[,"loc.start"])),
                     end=as.numeric(as.vector(cnv_5m[,"loc.end"]))),
-            seqinfo=get_hg19_seqinfo)
+            seqinfo=hg19_seqinfo)
         result_gr <- GRanges(
             Rle(as.character(as.vector(result[,"chrom"]))),
             IRanges(start=as.numeric(as.vector(result[,"loc.start"])),

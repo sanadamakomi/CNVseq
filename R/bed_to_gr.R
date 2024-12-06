@@ -7,6 +7,7 @@
 #' @import GenomicAlignments
 #' @importFrom utils read.table
 bed_to_gr <- function(file) {
+	hg19_seqinfo <- get_hg19_seqinfo()
     indat <- read.table(file, header = FALSE, sep = "\t", quote = "", comment.char = "#", na.strings = "NA",
                         fill = TRUE, stringsAsFactors = FALSE)
     if (nrow(indat) < 3) stop(paste0('Error format: ', file))
@@ -16,10 +17,10 @@ bed_to_gr <- function(file) {
     if (nrow(indat) == 3) {
         gr <- GRanges(Rle(chr[idx]), IRanges(start = as.numeric(as.vector(indat[idx, 2])),
                                              end = as.numeric(as.vector(indat[idx, 3]))),
-                      seqinfo=get_hg19_seqinfo())
+                      seqinfo=hg19_seqinfo)
     } else {
         gr <- GRanges(Rle(chr[idx]), IRanges(start = as.numeric(as.vector(indat[idx, 2])),
                                              end = as.numeric(as.vector(indat[idx, 3]))),
-                      seqinfo=get_hg19_seqinfo(), id = indat[idx, 4])
+                      seqinfo=hg19_seqinfo, id = indat[idx, 4])
     }
 }
