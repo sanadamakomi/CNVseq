@@ -42,7 +42,7 @@ Split wgs region into bins.Recommend input an `access.bed`, which is a BED file 
 Recommend a bin size of 20000 for 5-8G raw data, with a median read count of 150x in each window.
 
 ```
-Rscript CNVseq.R -mode split -binSize 2E4 -outPath target.bed
+Rscript CNVseq.R -mode split -binSize 20000 -outPath target.bed
 
 # input access.bed
 
